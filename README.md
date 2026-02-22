@@ -1,2 +1,0 @@
-# OOPSBANNERAPP
-Welcome
