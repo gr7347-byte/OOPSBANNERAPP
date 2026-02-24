@@ -1,5 +1,17 @@
-public class OopsBannerApp{
+public class OopsBannerApp {
     public static void main(String[] args) {
-        System.out.println("OOPS");
+        String[] line = {
+                (String.join(" ", "   ***   ", "   ***   ", "******   ", "  ***** ")),
+                (String.join(" ", " **   ** ", " **   ** ", "**    ** ", "**       ")),
+                (String.join(" ", "**     **", "**     **", "**    ** ", " **      ")),
+                (String.join(" ", "**     **", "**     **", "******   ", "   ***   ")),
+                (String.join(" ", "**     **", "**     **", "**       ", "      ** ")),
+                (String.join(" ", " **   ** ", " **   ** ", "**       ", "**     **")),
+                (String.join(" ", "   ***   ", "   ***   ", "**       ", "  *****  ")),
+        };
+
+        for (int i = 0; i < 7; i++) {
+            System.out.println(line[i]);
+        }
     }
 }
