@@ -1,87 +1,87 @@
-#include<iostream>#include<vector>#include<string>
+public class OopsBannerApp {
 
-class CharacterPatternMap {
-    private:
-    char character;[cite:52,106]std::vector<std::string>pattern;[cite:53,108]
+    static class CharacterPatternMap {
+        private final Character character;
+        private final String[] pattern;
 
-public:
-    CharacterPatternMap(char ch, std::vector<std::string> pat) 
-        : character(ch), pattern(pat) {} [cite: 21, 116]
+        public CharacterPatternMap(Character character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-    char getCharacter() const { return character; } [cite: 24, 122]
-    std::vector<std::string> getPattern() const { return pattern; } [cite: 24, 127]
-};
+        public Character getCharacter() {
+            return character;
+        }
 
-    std::vector<CharacterPatternMap> createCharacterPatternMaps() {
-    std::vector<CharacterPatternMap> maps; [cite: 28, 58]
-
-    maps.push_back(CharacterPatternMap('O', {
-        "  **** ",
-        " * * ",
-        " * * ",
-        " * * ",
-        " * * ",
-        " * * ",
-        "  **** "
-    })); [cite: 11, 59]
-
-    maps.push_back(CharacterPatternMap('P', {
-        " ***** ",
-        " * * ",
-        " * * ",
-        " ***** ",
-        " * ",
-        " * ",
-        " * "
-    })); [cite: 11, 59]
-
-    maps.push_back(CharacterPatternMap('S', {
-        "  ***** ",
-        " * ",
-        " * ",
-        "  **** ",
-        "      * ",
-        "      * ",
-        " ***** "
-    })); [cite: 11, 59]
-
-    maps.push_back(CharacterPatternMap(' ', {
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        "
-    })); [cite: 45, 59]
-
-    return maps; [cite: 60]
-}
-
-    std::vector<std::string>
-
-    getCharacterPattern(char ch, const std::vector<CharacterPatternMap>& charMaps) {
-    for (const auto& map : charMaps) {
-        if (toupper(ch) == map.getCharacter()) {
-            return map.getPattern(); [cite: 65, 147]
+        public String[] getPattern() {
+            return pattern;
         }
     }
-    return getCharacterPattern(' ', charMaps); [cite: 148, 152]
-}
 
-void printMessage(std::string message, const std::vector<CharacterPatternMap>& charMaps) {
-    for (int i = 0; i < 7; ++i) { [cite: 10, 139]
-        for (char ch : message) { [cite: 68]
-            std::vector<std::string> pattern = getCharacterPattern(ch, charMaps); [cite: 46, 156]
-            std::cout << pattern[i] << "  "; [cite: 160]
-        }
-        std::cout << std::endl;
+    public static CharacterPatternMap[] createCharacterPatternMaps() {
+        return new CharacterPatternMap[] {
+                new CharacterPatternMap('O', new String[] {
+                        "  **** ",
+                        " * * ",
+                        " * * ",
+                        " * * ",
+                        " * * ",
+                        " * * ",
+                        "  **** "
+                }),
+                new CharacterPatternMap('P', new String[] {
+                        " ***** ",
+                        " * * ",
+                        " * * ",
+                        " ***** ",
+                        " * ",
+                        " * ",
+                        " * "
+                }),
+                new CharacterPatternMap('S', new String[] {
+                        "  ***** ",
+                        " * ",
+                        " * ",
+                        "  **** ",
+                        "      * ",
+                        "      * ",
+                        " ***** "
+                }),
+                new CharacterPatternMap(' ', new String[] {
+                        "        ",
+                        "        ",
+                        "        ",
+                        "        ",
+                        "        ",
+                        "        ",
+                        "        "
+                })
+        };
     }
-}
 
-int main() {
-    std::vector<CharacterPatternMap> charMaps = createCharacterPatternMaps(); [cite: 190, 193]
-    std::string message = "OOPS"; [cite: 194]
-    printMessage(message, charMaps); [cite: 195]
-    return 0;
+    public static String[] getCharacterPattern(char ch, CharacterPatternMap[] charMaps) {
+        for (CharacterPatternMap map : charMaps) {
+            if (Character.toUpperCase(ch) == map.getCharacter()) {
+                return map.getPattern();
+            }
+        }
+        return getCharacterPattern(' ', charMaps);
+    }
+
+    public static void printMessage(String message, CharacterPatternMap[] charMaps) {
+        for (int i = 0; i < 7; i++) {
+            StringBuilder line = new StringBuilder();
+            for (char ch : message.toCharArray()) {
+                String[] pattern = getCharacterPattern(ch, charMaps);
+                line.append(pattern[i]).append("  ");
+            }
+            System.out.println(line);
+        }
+    }
+
+    public static void main(String[] args) {
+        CharacterPatternMap[] charMaps = createCharacterPatternMaps();
+        String message = "OOPS";
+        printMessage(message, charMaps);
+    }
 }
